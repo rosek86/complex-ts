@@ -245,7 +245,7 @@ export class Complex {
 
   public static abs(v: ComplexType): number {
     const z = Complex.from(v);
-    return Math.sqrt(z.re ** 2 + z.im ** 2);
+    return Math.hypot(z.re, z.im);
   }
 
   public static arg(v: ComplexType): number {
@@ -282,7 +282,7 @@ export class Complex {
       return Complex.from(1 / z.re, 0);
     }
 
-    const abs2 = z.re ** 2 + z.im ** 2;
+    const abs2 = Math.hypot(z.re, z.im) ** 2;
     return Complex.from(
        z.re / abs2,
       -z.im / abs2
@@ -339,7 +339,7 @@ export class Complex {
       return Complex.from(z1.re / z2.re, z1.im / z2.re);
     }
 
-    const d = z2.re ** 2 + z2.im ** 2;
+    const d = Math.hypot(z2.re, z2.im) ** 2;
     return Complex.from(
       (z1.re * z2.re + z1.im * z2.im) / d,
       (z1.im * z2.re - z1.re * z2.im) / d
@@ -408,7 +408,7 @@ export class Complex {
 
     // special case ^0.5
 
-    const z1Abs2 = z1.re ** 2 + z1.im ** 2;
+    const z1Abs2 = Math.hypot(z1.re, z1.im) ** 2;
     const z1Arg = Math.atan2(z1.im, z1.re);
     const zoAbs = z1Abs2 ** (z2.re / 2) * Math.exp(-z2.im * z1Arg);
     const zoArg = z2.re * z1Arg + z2.im / 2 * Math.log(z1Abs2);
@@ -423,7 +423,7 @@ export class Complex {
     // return Complex.pow(v, 1 / 2);
 
     const z1 = Complex.from(v);
-    const z1Abs2 = z1.re ** 2 + z1.im ** 2;
+    const z1Abs2 = Math.hypot(z1.re, z1.im) ** 2;
     const z1Arg = Math.atan2(z1.im, z1.re);
     const zoAbs = z1Abs2 ** (0.5 / 2);
     const zoArg = 0.5 * z1Arg;
