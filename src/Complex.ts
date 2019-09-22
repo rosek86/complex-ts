@@ -384,29 +384,38 @@ export class Complex {
     const z1 = Complex.from(v);
     const z2 = Complex.from(e);
 
+    const [ a, b ] = [ z1.re, z1.im ];
+    const [ c, d ] = [ z2.re, z2.im ];
+
     if (z2.isZero()) {
       return Complex.one;
     }
 
-    if (z1.isZero() && z2.re > 0 && z2.im !== 0) {
+    if (z1.isZero() && c > 0 && d !== 0) {
       return Complex.from(0);
     }
 
-    if (z1.re >= 0 && z1.im === 0 && z2.im === 0) {
+    if (z1.re >= 0 && b === 0 && d === 0) {
       return Complex.from(z1.re ** z2.re);
     }
 
-    if (z1.re === 0 && Number.isInteger(z2.re) && z2.im === 0) {
-      // i^n
-      switch (Math.abs(z2.re) % 4) {
-        case 0: return Complex.from(z1.im ** z2.re, 0);
-        case 1: return Complex.from(0, z1.im ** z2.re);
-        case 2: return Complex.from(-(z1.im ** z2.re), 0);
-        case 3: return Complex.from(0, -(z1.im ** z2.re));
+    if (a === 0 && Number.isInteger(c) && d === 0) {
+      // i^n - purely imaginary number
+      const ipow = b ** c;
+      switch (Math.abs(c) % 4) {
+        case 0: return Complex.from(ipow, 0);
+        case 1: return Complex.from(0, ipow);
+        case 2: return Complex.from(-ipow, 0);
+        case 3: return Complex.from(0, -ipow);
       }
     }
 
-    // special case ^0.5
+    // sqrt
+    if (c === 0.5 && d === 0) {
+      if (a < 0 && b === 0) {
+        return Complex.from(0, Math.sqrt(-a));
+      }
+    }
 
     const z1Abs2 = Math.hypot(z1.re, z1.im) ** 2;
     const z1Arg = Math.atan2(z1.im, z1.re);
@@ -420,46 +429,7 @@ export class Complex {
   }
 
   public static sqrt(v: ComplexType): Complex {
-    // return Complex.pow(v, 1 / 2);
-
-    const z1 = Complex.from(v);
-    const z1Abs2 = Math.hypot(z1.re, z1.im) ** 2;
-    const z1Arg = Math.atan2(z1.im, z1.re);
-    const zoAbs = z1Abs2 ** (0.5 / 2);
-    const zoArg = 0.5 * z1Arg;
-
-    return Complex.from(
-      zoAbs * Math.cos(zoArg),
-      zoAbs * Math.sin(zoArg)
-    );
-
-    // const z = Complex.from(v);
-
-    // const a = z.re;
-    // const b = z.im;
-    // const r = z.abs();
-
-    // let re = 0;
-    // let im = 0;
-
-    // if (a >= 0) {
-
-    //   if (b === 0) {
-    //     return Complex.from(Math.sqrt(a), 0);
-    //   }
-
-    //   re = 0.5 * Math.sqrt(2.0 * (r + a));
-    // } else {
-    //   re = Math.abs(b) / Math.sqrt(2 * (r - a));
-    // }
-
-    // if (a <= 0) {
-    //   im = 0.5 * Math.sqrt(2.0 * (r - a));
-    // } else {
-    //   im = Math.abs(b) / Math.sqrt(2 * (r + a));
-    // }
-
-    // return Complex.from(re, b < 0 ? -im : im);
+    return Complex.pow(v, 0.5);
   }
 
   public static sin(v: ComplexType): Complex {
