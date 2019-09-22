@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Complex Numbers (a + bi)^(c + di)</title>
+</head>
+
+<body>
+  <p>
+    <p style="text-align:center">
+      \begin{equation}
+        \ln(a b) = \ln(a) + \ln(b) \tag 1
+      \end{equation}
+      \begin{equation}
+        \ln(a^b) = b \ln(a) \tag 2
+      \end{equation}
+      \begin{equation*}
+        e^{a + b} = e^a e^b \tag 3
+      \end{equation*}
+      \begin{equation*}
+        e^{\gamma i} = cos(\gamma) + i sin(\gamma) \tag 4
+      \end{equation*}
+      \begin{equation*}
+        z = a + bi = \rho e^{\theta i}, \rho = \sqrt{a^2 + b^2}, \theta = \arg(a+bi) \tag 5
+      \end{equation*}
+      \begin{equation*}
+        \ln(a + bi) = \ln(\rho e^{\theta i}) = \ln(\rho) + \ln(e^{\theta i}) = \ln(\rho) + \theta i \tag 6
+      \end{equation*}
+      <hr>
+
+      \begin{equation*}
+        x = (a + bi)^{(c + di)}
+      \end{equation*}
+      \begin{equation*}
+        \ln(x) = \ln[(a + bi)^{(c + di)}] = (c + di) \ln(a + bi)
+      \end{equation*}
+      \begin{equation*}
+        x = e^{\ln(x)} = e^{(c + di) \ln(a + bi)}
+      \end{equation*}
+      \begin{equation*}
+        x = e^{(c + di) (\ln(\rho) + \theta i)}
+      \end{equation*}
+      \begin{equation*}
+        x = e^{c \ln(\rho) + c \theta i + d \ln(\rho) i - d \theta} = e^{(c \ln(\rho) - d \theta) + (c \theta + d \ln(\rho)) i}
+      \end{equation*}
+      \begin{equation*}
+        x = e^{(c \ln(\rho) - d \theta)} e^{(c \theta + d \ln(\rho)) i}
+      \end{equation*}
+      \begin{equation*}
+        x = e^{(c \ln(\rho) - d \theta)} [\cos(c \theta + d \ln(\rho)) + i \sin(c \theta + d \ln(\rho))]
+      \end{equation*}
+      \begin{equation*}
+        x = \frac{e^{c \ln(\rho)}}{e^{d \theta}} [\cos(c \theta + d \ln(\rho)) + i \sin(c \theta + d \ln(\rho))]
+      \end{equation*}
+      \begin{equation*}
+        x = \frac{\rho^c}{e^{d \theta}} [\cos(c \theta + d \ln(\rho)) + i \sin(c \theta + d \ln(\rho))]
+      \end{equation*}
+      \begin{equation*}
+        x = \rho^c \frac{e^0}{e^{d \theta}} [\cos(c \theta + d \ln(\rho)) + i \sin(c \theta + d \ln(\rho))]
+      \end{equation*}
+      \begin{equation*}
+        x = \rho^c e^{-d \theta} [\cos(c \theta + d \ln(\rho)) + i \sin(c \theta + d \ln(\rho))]
+      \end{equation*}
+      \begin{equation*}
+        x = (\sqrt{a^2 + b^2})^c e^{-d \arg(a+bi))} [\cos(c \arg(a+bi) + d \ln(\sqrt{a^2 + b^2})) + i \sin(c \arg(a+bi) + d \ln(\sqrt{a^2 + b^2}))]
+      \end{equation*}
+      \begin{equation*}
+        x = (a^2 + b^2)^{c/2} e^{-d \arg(a+bi))} [\cos(c \arg(a+bi) + \frac{d}{2} \ln(a^2 + b^2)) + i \sin(c \arg(a+bi) + \frac{d}{2} \ln(a^2 + b^2))]
+      \end{equation*}
+      <hr>
+
+      for \(c = 0, d = 0\)
+      \begin{equation*}
+        0^0, a^0, (bi)^0, (a + bi)^0
+      \end{equation*}
+      \begin{equation*}
+        x = 1
+      \end{equation*}
+      <hr>
+
+      for \(a = 0, b = 0, c \leq 0, d \neq 0\)
+      \begin{equation*}
+        0^{di}, 0^{(c + di)}
+      \end{equation*}
+      \begin{equation*}
+        x = NaN
+      \end{equation*}
+
+      for \(a = 0, b = 0, c > 0, d \neq 0\)
+      \begin{equation*}
+        0^{(c + di)}
+      \end{equation*}
+      \begin{equation*}
+        x = 0
+      \end{equation*}
+      <hr>
+
+      for \(b = 0, c \neq 0, d = 0\)
+      \begin{equation*}
+        0^{c}, a^{c}
+      \end{equation*}
+      \begin{equation*}
+        x = a^c
+      \end{equation*}
+      <hr>
+
+      for \(a = 0, b = 1, c \neq 0, d = 0, c \in \mathbb{Z} \)<br>
+      \begin{equation*}
+        i^{c}
+      \end{equation*}
+      \begin{equation*}
+        x = [\cos(c \frac{\pi}{2}) + i \sin(c \frac{\pi}{2})]
+      \end{equation*}
+
+      \begin{equation*}
+        c = -1, x = [\cos(\frac{-\pi}{2}) + i \sin(\frac{-\pi}{2})] = i
+      \end{equation*}
+      \begin{equation*}
+        c = 0, x = [\cos(0) + i \sin(0)] = 1
+      \end{equation*}
+      \begin{equation*}
+        c = 1, x = [\cos(\frac{\pi}{2}) + i \sin(\frac{\pi}{2})] = i
+      \end{equation*}
+      \begin{equation*}
+        c = 2, x = [\cos(\pi) + i \sin(\pi)] = -1
+      \end{equation*}
+      \begin{equation*}
+        c = 3, x = [\cos(\frac{3\pi}{2}) + i \sin(\frac{3\pi}{2})] = -i
+      \end{equation*}
+      \begin{equation*}
+        c = 4, x = [\cos(2\pi) + i \sin(2\pi)] = 1
+      \end{equation*}
+      <hr>
+
+      \begin{equation*}
+        x = (a^2 + b^2)^{c/2} e^{-d \arg(a+bi))} [\cos(c \arg(a+bi) + \frac{d}{2} \ln(a^2 + b^2)) + i \sin(c \arg(a+bi) + \frac{d}{2} \ln(a^2 + b^2))]
+      \end{equation*}
+      <hr>
+    </p>
+  </p>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script id="MathJax-script" async src="../node_modules/mathjax/es5/tex-mml-chtml.js"></script>
+</body>
+
+</html>
